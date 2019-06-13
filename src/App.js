@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage.js'
+import IndexPage from './IndexPage.js'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    page: "login"
+  }
+
+  redirect = (page) => {
+    this.setState({
+      page: page
+    })
+  }
+
+  render () {
+    console.log("in App")
+    if (this.state.page === "index") {
+      return <IndexPage />
+    } else if (this.state.page === "signup") {
+      return <SignUpPage redirect={this.redirect} />
+    } else if (this.state.page === "login") {
+      return <LoginPage redirect={this.redirect} />
+    }
+  }
+
 }
 
 export default App;
