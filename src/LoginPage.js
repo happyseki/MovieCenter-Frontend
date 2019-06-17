@@ -8,7 +8,7 @@ class LoginPage extends React.Component {
 
   componentDidMount() {
     if (!!localStorage.getItem("token")) {
-      this.props.redirect("index")
+      this.props.history.push("/")
     }
   }
 
@@ -30,12 +30,12 @@ class LoginPage extends React.Component {
     }).then(res => res.json())
       .then(data => {
         localStorage.setItem('token', data.token)
-        this.props.redirect("index")
+        this.props.history.push("/")
       })
   }
 
   render () {
-    console.log("in LoginPage")
+    console.log("LoginPage props", this.props)
     return (
       <form onSubmit={this.handleLogin}>
         <input type="text" name="username" onChange={this.handleChange}/>

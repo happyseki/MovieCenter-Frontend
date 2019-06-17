@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 
 class Search extends Component {
 
+
   render() {
     return (
-      <div>
-        Search
-      </div>
+      <div className="filter" >
+      <input
+        id="search-bar"
+        type="text"
+        placeholder="Search Movies"
+       onChange={this.props.userInput}
+      />
+    </div>
     );
   }
 
