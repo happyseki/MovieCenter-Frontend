@@ -16,10 +16,20 @@ class Top5 extends Component {
   }
 
   render() {
-    console.log("in Top5", this.state)
-    return (
-      <div>Top5</div>
 
+    return (
+      <div className="top5">
+      <h2>Top 5 Movies</h2>
+      {this.state.top5.map(movie=>
+      <div className="top5-movie">
+        <h3>{movie.title}</h3>
+        <img src={movie.poster} alt="poster"/>
+        <br />
+        <button /*onClick={}*/> Add Favorite </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button /*onClick={}*/>Add Watchlist</button>
+      </div>
+    )}
+      </div>
     );
   }
 
