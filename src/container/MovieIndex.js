@@ -7,9 +7,9 @@ class MovieIndex extends Component {
   render() {
     return (
       <div>
-      
+
         <Top5 />
-        <MovieContainer />
+        <MovieContainer movies={this.props.movies}/>
       </div>
     );
   }

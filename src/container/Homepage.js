@@ -18,12 +18,25 @@ class Homepage extends React.Component {
      })
    }
 
+
+   handleClick = () => {
+     delete localStorage.token
+   }
+
    componentDidMount() {
+     fetch("http://localhost:3000/profile", {
+       headers: {
+         'Authorization': localStorage.getItem("token")
+       }
+     })
+     
      fetch("http://localhost:3000/movies")
      .then(res => res.json())
      .then(movies => {
        this.setState({movies: movies})
      })
+
+
    }
 
    redirect = (page) => {
