@@ -4,23 +4,38 @@ import WatchLi from '../Components/WatchLi.js';
 
 class Profile extends Component {
 
-  // componentDidMount() {
-  //   fetch("http://localhost:3000/profile", {
-  //     headers: {
-  //       'Authorization': localStorage.getItem("token")
-  //     }
-  //   })
-  // }
-  //
-  // handleClick = () => {
-  //   delete localStorage.token
-  // }
+  componentDidMount() {
+    fetch("http://localhost:3000/profile", {
+      headers: {
+        'Authorization': localStorage.getItem("token")
+      }
+    })
+  }
+
+  handleClick = () => {
+    delete localStorage.token
+  }
+
+  renderFavorites = () => {
+   if(!this.props.favorites) {
+     return null;
+   } else {
+     return this.props.favorites.map(favorite => {
+       return (
+         <Fav
+           key={favorite.id}
+           favorite={favorite}
+           removeFavorite={this.props.removeFavorite}
+         />
+       )
+     })
+   }
+ }
 
   render() {
     return (
       <div>
-      "Hello from Index"
-      <Fav />
+      {this.renderFavorites()}
       <WatchLi />
       </div>
     );
