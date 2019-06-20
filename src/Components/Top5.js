@@ -21,7 +21,7 @@ class Top5 extends Component {
       <div className="top5">
       <h2>Top 5 Movies</h2>
       {this.state.top5.map(movie=>
-      <div className="top5-movie">
+      <div className="top5-movie" onClick={()=>this.props.handleMovie(movie)}>
         <h3>{movie.title}</h3>
         <img src={movie.poster} alt="poster"/>
         <br />

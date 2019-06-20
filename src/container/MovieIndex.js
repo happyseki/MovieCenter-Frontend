@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import Top5 from '../Components/Top5';
 import MovieContainer from './MovieContainer';
+// import { Route } from 'react-router-dom';
 
-class MovieIndex extends Component {
+const MovieIndex = (props) =>(
 
-  render() {
-    return (
       <div>
 
-        <Top5 />
-        <MovieContainer movies={this.props.movies}/>
+        <Top5 handleMovie={props.handleMovie}/>
+        <MovieContainer
+        movies={props.movies}
+        handleMovie={props.handleMovie}
+        currentMovie={props.currentMovie}
+        addedFavorites={props.addedFavorites}
+        addedWatchlist={props.addedWatchlist}/>
       </div>
-    );
-  }
 
-}
+)
 
 export default MovieIndex;
