@@ -11,7 +11,7 @@ class MovieCard extends Component {
         <br />
         <button onClick={()=>this.props.addedFavorites(this.props.movie)}> Add Favorite </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={()=>this.props.addedWatchlist(this.props.movie)}>Add Watchlist</button>
-        <Detail currentMovie={this.props.currentMovie}/>
+        // <Detail currentMovie={this.props.currentMovie}/>
       </div>
     );
   }
