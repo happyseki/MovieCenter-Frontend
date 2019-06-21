@@ -15,6 +15,22 @@ class App extends React.Component {
     favorites: [],
     watchlist: []
   }
+  // find favorite.id === movie.id, then render it
+  componentDidMount(){
+    let update = []
+    fetch("http://localhost:3000/movie_users")
+    .then(res => res.json())
+    .then(mus=>(
+       mus.map(mu => {
+      if(mu.favorite){
+        update.push(mu)
+        }
+      this.setState({
+          favorites: update
+        })
+      })
+    ))
+  }
 
   addedFavorites = (movie) => {
       // console.log(movie)
@@ -66,7 +82,7 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log("after render",this.state.movies)
+    console.log("after render",this.state.favorites)
     // if (this.state.page === "signup") {
     //   return <SignUpPage redirect={this.redirect} />
     // } else if (this.state.page === "login") {
