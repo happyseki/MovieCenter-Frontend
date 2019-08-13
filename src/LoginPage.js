@@ -6,11 +6,11 @@ class LoginPage extends React.Component {
     password: ""
   }
 
-  componentDidMount() {
-    if (!!localStorage.getItem("token")) {
-      this.props.history.push("/")
-    }
-  }
+  // componentDidMount() {
+  //   if (!!localStorage.getItem("token")) {
+  //     this.props.history.push("/")
+  //   }
+  // }
 
   handleChange = (event) => {
     this.setState({

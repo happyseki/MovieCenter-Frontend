@@ -1,7 +1,11 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 class SignUpPage extends React.Component {
+  state = {
+    username: "",
+    password: ""
+  }
 
   handleLogin = (event) => {
     event.preventDefault()
@@ -21,18 +25,20 @@ class SignUpPage extends React.Component {
       })
     }).then(res => res.json())
       .then(data => {
+        console.log("in signup",data)
         localStorage.setItem('token', data.token)
+        this.props.history.push("/login")
       })
-      .then(blah => <Redirect to='/' />)
+
   }
 
   render () {
-    // console.log(this.props.redirect())
+     console.log(this.props)
     return (
       <form onSubmit={this.handleLogin}>
         <input type="text" name="username" onChange={this.handleChange}/>
         <input type="password" name="password" onChange={this.handleChange}/>
-        <input type="submit" value="Log in" />
+        <input type="submit" value="Sign up"/>
       </form>
     )
   }
