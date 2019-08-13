@@ -33,48 +33,60 @@ class App extends React.Component {
   }
 
   addedFavorites = (movie) => {
-      // console.log(movie)
-      let id = movie.id
-      if(this.state.favorites.includes(movie)) {
-        alert('already liked')
+    // console.log(movie)
+    let id = movie.id
+    if(this.state.favorites.includes(movie)) {
+      alert('already liked')
 
-      } else {
-        this.setState({favorites: [...this.state.favorites, movie]})
-        fetch("http://localhost:3000/movie_users", {
-          method: 'PATCH',
-          headers: {
-            'Authorization': localStorage.token,
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            movie_id: id,
-            favorite: true
-          })
+    } else {
+      this.setState({favorites: [...this.state.favorites, movie]})
+      fetch("http://localhost:3000/movie_users", {
+        method: 'PATCH',
+        headers: {
+          'Authorization': localStorage.token,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          movie_id: id,
+          favorite: true
         })
-      }
+      })
     }
+  }
 
   removeFavorite=(unfavorited)=>{
-        console.log("clicked", unfavorited)
-        let copy = [...this.state.favorites]
-        let newArray = copy.filter( favorite => {
-          return favorite.title !== unfavorited.title
-        })
-         this.setState({favorites: newArray})
-      }
+    console.log("clicked", unfavorited)
+    let copy = [...this.state.favorites]
+    let newArray = copy.filter( favorite => {
+      return favorite.title !== unfavorited.title
+    })
+     this.setState({favorites: newArray})
+
+
+     fetch(`http://localhost:3000/movie_users/${unfavorited.id}`, {
+       method: "DELETE",
+       headers: {
+         "Content-Type": "application/json",
+         "Accept": "application/json"
+       },
+       body: JSON.stringify({
+         id: unfavorited.id
+       })
+     })
+  }
 
   addedWatchlist=()=>{
     fetch('http://localhost:3000/movie_users', {
-  method: 'PATCH',
-  headers: {
-    'Authorization': localStorage.token
-  },
-  body: JSON.stringify({
-    movie_id: 1, // or whatever
-    watchList: true // or false
+    method: 'PATCH',
+    headers: {
+      'Authorization': localStorage.token
+    },
+    body: JSON.stringify({
+      movie_id: 1, // or whatever
+      watchList: true // or false
+    })
   })
-})
   }
 
   removeWatchlist=()=>{

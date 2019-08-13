@@ -3,6 +3,7 @@ import Profile from "../container/Profile"
 import { NavLink } from 'react-router-dom'
 
 
+
 class Nav extends Component {
     state={
       isLogin: false
@@ -17,6 +18,7 @@ class Nav extends Component {
      handleClick = () => {
        delete localStorage.token
        this.setState({isLogin: false})
+
      }
 
   render() {
